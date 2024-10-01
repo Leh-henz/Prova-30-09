@@ -1,0 +1,162 @@
+package br.unipar.provacleiton
+
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ListView
+import android.widget.TextView
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+class MainActivity : AppCompatActivity() {
+    @SuppressLint("MissingInflatedId", "WrongViewCast")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+        val destino = findViewById<TextView>(R.id.txtDestino)
+        val localViagem = findViewById<EditText>(R.id.localViagem)
+        val dataViagem = findViewById<EditText>(R.id.txtData)
+        val diaViagem = findViewById<EditText>(R.id.diaViagem)
+        val itensConsumidos = findViewById<ListView>(R.id.itensConsumo)
+        val valorItens = findViewById<EditText>(R.id.valorProdutos)
+        val btnValidar = findViewById<Button>(R.id.btnValidar)
+        val btnNew = findViewById<Button>(R.id.btnNew)
+
+
+        btnValidar.setOnClickListener {
+            val viagemUm = destino.text.toString()
+            val destinoUm = localViagem.text.toString()
+            val dataUm = diaViagem.text.toString()
+            val consumo = itensConsumidos.toString()
+
+            val somaUm = itensConsumidos.toString()
+            val somaDois = valorItens.text.toString()
+
+            if (somaUm.isNotEmpty() && somaDois.isNotEmpty()) {
+                val totalConsumo = somaUm.toDouble() + somaDois.toDouble()
+                itensConsumidos = totalConsumo.toString("")
+
+            } else {
+                itensConsumidos = "Informe os valores:"
+            }
+        }
+        btnNew.setOnClickListener{
+            destino.setText("")
+            localViagem.setText("")
+
+        }
+
+    }
+}
+
+
+
+*/----------------------------------------------------------/*
+
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    tools:ignore="VisualLintBounds">
+
+    <TextView
+        android:id="@+id/txtHome"
+        android:layout_width="169dp"
+        android:layout_height="35dp"
+        android:fontFamily="sans-serif-smallcaps"
+        android:text="Rodrigo´s Travel Edition"
+        tools:ignore="HardcodedText,MissingConstraints,TextSizeCheck"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="16dp" />
+
+    <TextView
+        android:id="@+id/txtDestino"
+        android:layout_width="385dp"
+        android:layout_height="36dp"
+        android:text="Qual foi o destino da sua ultima viagem?"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="52dp"
+        tools:ignore="HardcodedText,MissingConstraints" />
+
+    <EditText
+        android:id="@+id/localViagem"
+        android:layout_width="381dp"
+        android:layout_height="29dp"
+        android:ems="10"
+        android:inputType="text"
+        tools:ignore="Autofill,LabelFor,MissingConstraints,SpeakableTextPresentCheck,TouchTargetSizeCheck"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="76dp" />
+
+    <TextView
+        android:id="@+id/txtData"
+        android:layout_width="385dp"
+        android:layout_height="32dp"
+        android:text="Quando foi a sua Viagem?"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="105dp"
+        tools:ignore="HardcodedText,MissingConstraints" />
+
+    <EditText
+        android:id="@+id/diaViagem"
+        android:layout_width="383dp"
+        android:layout_height="20dp"
+        android:ems="10"
+        android:inputType="date"
+        tools:ignore="Autofill,LabelFor,MissingConstraints,SpeakableTextPresentCheck,TouchTargetSizeCheck"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="137dp" />
+
+    <ListView
+        android:id="@+id/itensConsumo"
+        android:layout_width="377dp"
+        android:layout_height="63dp"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="227dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btnValidar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Validar Viagem"
+        tools:ignore="HardcodedText,MissingConstraints"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="164dp" />
+
+    <Button
+        android:id="@+id/btnNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nova Viagem"
+        tools:ignore="HardcodedText,MissingConstraints"
+        tools:layout_editor_absoluteX="133dp"
+        tools:layout_editor_absoluteY="341dp" />
+
+    <EditText
+        android:id="@+id/valorProdutos"
+        android:layout_width="373dp"
+        android:layout_height="47dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Valor Produtos:"
+        tools:ignore="Autofill,HardcodedText,LabelFor,MissingConstraints,TouchTargetSizeCheck"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="290dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
